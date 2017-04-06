@@ -2,7 +2,7 @@
 React projects : trying my hands on React JS
 
 
-- To install React js and create ne wprojects for your self
+- To install React js and create new projects for your self
 
       npm install -g create-react-app
       create-react-app hello-world
