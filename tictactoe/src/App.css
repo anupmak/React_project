@@ -44,6 +44,7 @@
     box-sizing: border-box;
     border: 2px solid black;
     font-size: 5em;
+    text-align: center;
 }
 
 .square:hover {
@@ -52,7 +53,7 @@
 }
 
 .button {
-    margin-top: 5%;
+    margin-top: 5px;
     background-color: cadetblue;
     color: black;
 }

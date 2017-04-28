@@ -8,7 +8,7 @@ class App extends Component {
         super(props);
         this.state = {
             PLAYER_ONE: "X",
-            PLAYER_TWO: "0",
+            PLAYER_TWO: "O",
             currentTurn: "X",
             board: ["", "", "", "", "", "", "", "", ""],
             winner: null
@@ -17,17 +17,13 @@ class App extends Component {
 
     handleClick(index) {
         if (this.state.board[index] === "" && !this.state.winner) {
-            console.log(this.state.currentTurn);
-            console.log(index);
-            console.log(this.state.board);
             this.state.board[index] = this.state.currentTurn;
-            console.log("this.state.board[x] " + this.state.board[index]);
             this.setState({
                 board: this.state.board,
                 currentTurn: (this.state.currentTurn === this.state.PLAYER_ONE) ?
                     this.state.PLAYER_TWO :
                     this.state.PLAYER_ONE,
-                winner: this.checkWinner(),
+                winner: (this.checkWinner())? this.state.currentTurn : this.state.winner,
             });
 
         }
@@ -41,7 +37,7 @@ class App extends Component {
         return winnerCombinations.find(function (combo) {
             if (board[combo[0]] !== "" && board[combo[1]] !== "" && board[combo[2]] !== "" &&
                 board[combo[0]] === board[combo[1]] && board[combo[1]] === board[combo[2]]) {
-                return currentTurn;
+                return true;
             }
             else {
                 return false;
@@ -66,13 +62,13 @@ class App extends Component {
                     <h2>Lets play tictactoe</h2>
                 </div>
                 <div className="App-intro">
-                    {this.state.winner ? <h1>{`The winner is ${this.state.winner}`}</h1> : null}
                     <div className="board">
                         {this.state.board.map((cell, index) => {
                             return <div onClick={() => this.handleClick(index)} key={index}
                                         className="square">{cell}</div>;
                         })}
                     </div>
+                    {this.state.winner ? <h3>{`The winner is ${this.state.winner}`}</h3> : null}
                     <button className="button" onClick={() => this.reset()}>Reset Game</button>
                 </div>
             </div>
